@@ -3,6 +3,16 @@
 import { useState } from "react";
 import { Tab, TabItem } from "./components/Tab";
 
+type TimerTabProps = {};
+const TimerTab: React.FC<TimerTabProps> = ({}) => {
+  return <div className="timer-tab">timer tab</div>;
+};
+
+type GameSettingTabProps = {};
+const GameSettingTab: React.FC<GameSettingTabProps> = ({}) => {
+  return <div className="game-setting-tab">Game setting</div>;
+};
+
 type PlayerSettingTabProps = {
   players: Player[];
   setPlayers: (players: Player[]) => unknown;
@@ -114,8 +124,12 @@ export default function Home() {
       title: "Player Setting",
       content: <PlayerSettingTab players={players} setPlayers={setPlayers} />,
     },
-    { tabKey: "gameSetting", title: "Game Setting" },
-    { tabKey: "timer", title: "Timer" },
+    {
+      tabKey: "gameSetting",
+      title: "Game Setting",
+      content: <GameSettingTab />,
+    },
+    { tabKey: "timer", title: "Timer", content: <TimerTab /> },
   ];
 
   return (
