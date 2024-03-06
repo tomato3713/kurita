@@ -3,9 +3,27 @@
 import { useState } from "react";
 import { Tab, TabItem } from "./components/Tab";
 
-type TimerTabProps = {};
-const TimerTab: React.FC<TimerTabProps> = ({}) => {
-  return <div className="timer-tab">timer tab</div>;
+type TimerTabProps = {
+  players: Player[];
+  gameSetting: GameSetting;
+};
+const TimerTab: React.FC<TimerTabProps> = ({ players, gameSetting }) => {
+  return (
+    <div className="timer-tab">
+      timer tab
+      <div>Timer</div>
+      <div>{gameSetting.span} min</div>
+      <div className="flex">
+        {players.map((player) => {
+          return (
+            <div>
+              <PlayerIcon player={player} />
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
 };
 
 type GameSettingTabProps = {
@@ -238,7 +256,16 @@ export default function Home() {
         />
       ),
     },
-    { tabKey: "timer", title: "Timer", content: <TimerTab /> },
+    {
+      tabKey: "timer",
+      title: "Timer",
+      content: (
+        <TimerTab
+          players={players.filter((p) => p.active)}
+          gameSetting={gameSetting}
+        />
+      ),
+    },
   ];
 
   return (
