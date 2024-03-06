@@ -17,12 +17,12 @@ export function Tab({ tabs, defaultOpenKey }: Props) {
 
   return (
     <div className="flex flex-col">
-      <div className={`flex-initial w-50 flex-row`}>
+      <div className={`flex-initial w-50 flex-row divide-dashed`}>
         {tabs.map((e) => {
           return (
             <button
               key={`tab-item-${e.title}`}
-              className={`tab-header-item font-midium mr-2 ${e.tabKey === tabKey && "text-red"}`}
+              className={`tab-header-item font-midium px-5 ${e.tabKey === tabKey && "bg-blue-300"}`}
               onClick={handleClick}
               value={e.tabKey}
             >
