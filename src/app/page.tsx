@@ -28,6 +28,13 @@ const PlayerSettingTab: React.FC<PlayerSettingTabProps> = ({
     };
   };
 
+  const createUpdatePlayerActiveFunction = (targetIdx: number) => {
+    return () => {
+      const obj = { ...players[targetIdx], active: !players[targetIdx].active };
+      setPlayers(players.map((p, i) => (i === targetIdx ? obj : p)));
+    };
+  };
+
   return (
     <div className="player-setting-tab">
       <ul>
@@ -40,6 +47,8 @@ const PlayerSettingTab: React.FC<PlayerSettingTabProps> = ({
                   type="checkbox"
                   value=""
                   className="w-4 h-4"
+                  checked={p.active}
+                  onChange={createUpdatePlayerActiveFunction(idx)}
                 ></input>
                 <label htmlFor={"player-checkbox-items-" + idx.toString()}>
                   <PlayerIcon player={p} />
@@ -102,6 +111,7 @@ const PlayerIcon: React.FC<PlayerIconProps> = ({ player }) => {
 type Player = {
   name: string;
   color: string;
+  active: boolean;
 };
 
 const TabKindList = {
@@ -112,10 +122,10 @@ type TabKind = (typeof TabKindList)[keyof typeof TabKindList];
 
 export default function Home() {
   const [players, setPlayers] = useState([
-    { name: "1", color: "#0000ff" },
-    { name: "2", color: "#00ff00" },
-    { name: "3", color: "#ff0000" },
-    { name: "4", color: "#10500F" },
+    { name: "1", color: "#0000ff", active: true },
+    { name: "2", color: "#00ff00", active: false },
+    { name: "3", color: "#ff0000", active: false },
+    { name: "4", color: "#10500F", active: false },
   ]);
 
   const tabs: TabItem[] = [
