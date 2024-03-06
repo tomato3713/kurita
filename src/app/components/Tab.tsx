@@ -16,13 +16,13 @@ export function Tab({ tabs, defaultOpenKey }: Props) {
   };
 
   return (
-    <div className="tab-list">
-      <div className="tab">
+    <div className="flex flex-col">
+      <div className={`flex-initial w-50 flex-row`}>
         {tabs.map((e) => {
           return (
             <button
               key={`tab-item-${e.title}`}
-              className={`tab-header-item font-midium ${e.tabKey === tabKey && "text-red"}`}
+              className={`tab-header-item font-midium mr-2 ${e.tabKey === tabKey && "text-red"}`}
               onClick={handleClick}
               value={e.tabKey}
             >
@@ -31,7 +31,7 @@ export function Tab({ tabs, defaultOpenKey }: Props) {
           );
         })}
       </div>
-      <div className="tab-content">
+      <div className="flex-col">
         {tabs.find((e) => e.tabKey === tabKey)?.content}
       </div>
     </div>
