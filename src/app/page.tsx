@@ -35,7 +35,9 @@ type PlayerIconProps = {
 };
 const PlayerIcon: React.FC<PlayerIconProps> = ({ player }) => {
   return (
-    <div className={`mb-3 text-2xl font-semibold`}>Palyer {player.name}</div>
+    <div className={`mb-1 mt-1 mr-1 text-2xl font-semibold items-center`}>
+      Palyer {player.name}
+    </div>
   );
 };
 
@@ -51,8 +53,8 @@ export default function Home() {
   const [players, setPlayers] = useState([
     { name: "1", color: "#0000ff" },
     { name: "2", color: "#00ff00" },
-    { name: "2", color: "#ff0000" },
-    { name: "2", color: "#10500F" },
+    { name: "3", color: "#ff0000" },
+    { name: "4", color: "#10500F" },
   ]);
 
   const createUpdatePlayerColorFunction = (targetIdx: number) => {
@@ -70,11 +72,21 @@ export default function Home() {
           {players.map((p, idx) => {
             return (
               <li key={p.name}>
-                <PlayerIcon player={p} />
-                <ColorPicker
-                  color={p.color}
-                  setColor={createUpdatePlayerColorFunction(idx)}
-                />
+                <div className="flex items-center mb-4">
+                  <input
+                    id={"player-checkbox-items-" + idx.toString()}
+                    type="checkbox"
+                    value=""
+                    className="w-4 h-4"
+                  ></input>
+                  <label htmlFor={"player-checkbox-items-" + idx.toString()}>
+                    <PlayerIcon player={p} />
+                  </label>
+                  <ColorPicker
+                    color={p.color}
+                    setColor={createUpdatePlayerColorFunction(idx)}
+                  />
+                </div>
               </li>
             );
           })}
