@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Tab, TabItem } from "./components/Tab";
 import { Timer } from "./components/Timer";
+import { useTimer } from "react-timer-hook";
 
 type TimerTabProps = {
   players: Player[];
@@ -14,6 +15,7 @@ const TimerTab: React.FC<TimerTabProps> = ({ players, gameSetting }) => {
   const handlePlayerClick = (player: Player) => {
     return () => {
       setActivePlayer(player);
+      restart(timestamp, true);
     };
   };
 
@@ -24,6 +26,13 @@ const TimerTab: React.FC<TimerTabProps> = ({ players, gameSetting }) => {
     console.log("expired");
   };
 
+  const { seconds, minutes, isRunning, start, pause, resume, restart } =
+    useTimer({
+      expiryTimestamp: timestamp,
+      onExpire: handleExpired,
+      autoStart: false,
+    });
+
   return (
     <div className="timer-tab">
       timer tab
@@ -31,7 +40,14 @@ const TimerTab: React.FC<TimerTabProps> = ({ players, gameSetting }) => {
       <div>{gameSetting.span} min</div>
       <div>
         <PlayerIcon player={activePlayer} />
-        <Timer expiryTimestamp={timestamp} handleExpired={handleExpired} />
+        <Timer
+          minutes={minutes}
+          seconds={seconds}
+          isRunning={isRunning}
+          handleStart={start}
+          handlePause={pause}
+          handleResume={resume}
+        />
       </div>
       <div className="flex">
         {players.map((player) => {

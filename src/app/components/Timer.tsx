@@ -1,40 +1,33 @@
 import React from "react";
-import { useTimer } from "react-timer-hook";
 
 type TimerProps = {
-  expiryTimestamp: Date;
-  handleExpired?: () => void;
+  handleReset: () => void;
+  handleStart: () => void;
+  handlePause: () => void;
+  handleResume: () => void;
+  minutes: number;
+  seconds: number;
+  isRunning: boolean;
 };
 export const Timer: React.FC<TimerProps> = ({
-  expiryTimestamp,
-  handleExpired,
+  handlePause,
+  handleResume,
+  minutes,
+  seconds,
+  isRunning,
 }) => {
-  const { seconds, minutes, isRunning, start, pause, resume, restart } =
-    useTimer({
-      expiryTimestamp,
-      onExpire: handleExpired,
-      autoStart: false,
-    });
-
   return (
     <div style={{ textAlign: "center" }}>
       <div style={{ fontSize: "100px" }}>
-        <span>{minutes}</span>:<span>{seconds}</span>
+        <button
+          onClick={() => {
+            isRunning ? handlePause() : handleResume();
+          }}
+        >
+          <span>{minutes}</span>:<span>{seconds}</span>
+        </button>
       </div>
       <p>{isRunning ? "Running" : "Not running"}</p>
-      <button onClick={start}>Start</button>
-      <button onClick={pause}>Pause</button>
-      <button onClick={resume}>Resume</button>
-      <button
-        onClick={() => {
-          // Restarts to 5 minutes timer
-          const time = new Date();
-          time.setSeconds(time.getSeconds() + 300);
-          restart(time);
-        }}
-      >
-        Restart
-      </button>
     </div>
   );
 };
