@@ -47,6 +47,7 @@ const TimerTab: React.FC<TimerTabProps> = ({ players, gameSetting }) => {
           handleStart={start}
           handlePause={pause}
           handleResume={resume}
+          handleRestart={restart}
         />
       </div>
       <div className="flex">
