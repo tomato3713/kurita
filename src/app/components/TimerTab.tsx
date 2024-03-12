@@ -4,10 +4,10 @@ import { useTimer } from "react-timer-hook";
 import { Timer } from "./Timer";
 import { PlayerIcon } from "./PlayerIcon";
 
-type TimerTabProps = {
+type TimerTabProps = Readonly<{
   players: Player[];
   gameSetting: GameSetting;
-};
+}>;
 export const TimerTab: React.FC<TimerTabProps> = ({ players, gameSetting }) => {
   const [activePlayer, setActivePlayer] = useState(players[0]);
 

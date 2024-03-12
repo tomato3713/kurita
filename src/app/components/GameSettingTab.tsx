@@ -1,9 +1,10 @@
 import { GameSetting } from "@/lib/util";
 
-export type GameSettingTabProps = {
+type GameSettingTabProps = Readonly<{
   gameSetting: GameSetting;
   setGameSetting: (obj: GameSetting) => unknown;
-};
+}>;
+
 export const GameSettingTab: React.FC<GameSettingTabProps> = ({
   gameSetting,
   setGameSetting,

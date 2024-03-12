@@ -1,6 +1,6 @@
 import React from "react";
 
-type TimerProps = {
+type TimerProps = Readonly<{
   handleRestart: (newExpiryTimestamp: Date, autoStart?: boolean) => void;
   handleStart: () => void;
   handlePause: () => void;
@@ -8,7 +8,8 @@ type TimerProps = {
   minutes: number;
   seconds: number;
   isRunning: boolean;
-};
+}>;
+
 export const Timer: React.FC<TimerProps> = ({
   handlePause,
   handleResume,

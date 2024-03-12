@@ -1,7 +1,8 @@
-type ColorPickerProps = {
+type ColorPickerProps = Readonly<{
   color: string;
   setColor: (color: string) => unknown;
-};
+}>;
+
 export const ColorPicker: React.FC<ColorPickerProps> = ({
   color,
   setColor,

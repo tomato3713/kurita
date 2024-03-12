@@ -1,11 +1,11 @@
-export type PlayerSettingTabProps = {
-  players: Player[];
-  setPlayers: (players: Player[]) => unknown;
-};
 import { Player } from "@/lib/util";
 import { PlayerIcon } from "./PlayerIcon";
 import { ColorPicker } from "./ColorPicker";
 
+type PlayerSettingTabProps = Readonly<{
+  players: Player[];
+  setPlayers: (players: Player[]) => unknown;
+}>;
 export const PlayerSettingTab: React.FC<PlayerSettingTabProps> = ({
   players,
   setPlayers,

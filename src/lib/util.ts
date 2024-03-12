@@ -1,5 +1,3 @@
-"use client";
-
 /*
  * Player has properties of player.
  */
