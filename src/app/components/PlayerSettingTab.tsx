@@ -41,12 +41,12 @@ export const PlayerSettingTab: React.FC<PlayerSettingTabProps> = ({
                   checked={p.active}
                   onChange={createUpdatePlayerActiveFunction(idx)}
                 />
-                <label htmlFor={"player-checkbox-items-" + idx.toString()}>
+                <label htmlFor={`player-checkbox-items-${idx}`}>
                   <div className="text-sm font-light">{p.name}</div>
                   <PlayerIcon player={p} />
                 </label>
                 <input
-                  id={`colorpicker-items-${p.name}`}
+                  id={`colorpicker-items-${idx}`}
                   type="color"
                   className="hidden"
                   value={p.color}
@@ -56,7 +56,7 @@ export const PlayerSettingTab: React.FC<PlayerSettingTabProps> = ({
                   }}
                 />
                 <label
-                  htmlFor={`colorpicker-items-${p.name}`}
+                  htmlFor={`colorpicker-items-${idx}`}
                   className="inline-block justify-center w-2/5"
                 >
                   <ColorPickerIcon />
