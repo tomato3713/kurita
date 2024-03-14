@@ -9,7 +9,6 @@ type TimerProps = Readonly<{
   seconds: number;
   isRunning: boolean;
 }>;
-
 export const Timer: React.FC<TimerProps> = ({
   handlePause,
   handleResume,
@@ -19,8 +18,8 @@ export const Timer: React.FC<TimerProps> = ({
   isRunning,
 }) => {
   return (
-    <div style={{ textAlign: "center" }}>
-      <div style={{ fontSize: "100px" }}>
+    <div className="text-center">
+      <div className="text-6xl">
         <button
           onClick={() => {
             isRunning ? handlePause() : handleResume();

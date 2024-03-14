@@ -33,33 +33,38 @@ export const TimerTab: React.FC<TimerTabProps> = ({ players, gameSetting }) => {
     });
 
   return (
-    <div className="timer-tab">
-      timer tab
-      <div>Timer</div>
-      <div>{gameSetting.span} min</div>
-      <div>
-        <PlayerIcon player={activePlayer} />
-        <Timer
-          minutes={minutes}
-          seconds={seconds}
-          isRunning={isRunning}
-          handleStart={start}
-          handlePause={pause}
-          handleResume={resume}
-          handleRestart={restart}
-        />
+    <div className="flex flex-col">
+      <div className="flex flex-row">
+        <div className="w-4/12">
+          <PlayerIcon player={activePlayer} />
+        </div>
+        <div className="place-self-center">
+          <Timer
+            minutes={minutes}
+            seconds={seconds}
+            isRunning={isRunning}
+            handleStart={start}
+            handlePause={pause}
+            handleResume={resume}
+            handleRestart={restart}
+          />
+        </div>
       </div>
-      <div className="flex">
-        {players.map((player) => {
-          return (
-            <button
-              key={`timer-player-icon-${player.name}`}
-              onClick={handlePlayerClick(player)}
-            >
-              <PlayerIcon player={player} />
-            </button>
-          );
-        })}
+      <div>
+        <div className="flex-col">
+          {players.map((player) => {
+            return (
+              <button
+                className={`w-1/5 ps-px pr-px ${activePlayer === player && "bg-gray-400"}`}
+                key={`timer-player-icon-${player.name}`}
+                onClick={handlePlayerClick(player)}
+              >
+                <PlayerIcon player={player} />
+                <div className="text-sm font-light m-0 p-0">{player.name}</div>
+              </button>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
