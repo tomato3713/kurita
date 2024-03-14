@@ -31,36 +31,35 @@ export const PlayerSettingTab: React.FC<PlayerSettingTabProps> = ({
           return (
             <li key={p.name} className="w-1/5 ps-px pr-px">
               <div
-                className={`items-center text-center mb-px px-1 ${p.active && "bg-gray-400"}`}
+                className={`items-center text-center mb-px px-1 pb-1 ${p.active && "bg-gray-400"}`}
               >
                 <input
-                  id={"player-checkbox-items-" + idx.toString()}
+                  id={`player-checkbox-items-${idx}`}
                   type="checkbox"
                   value=""
-                  className="hidden"
+                  className="invisible block size-0 m-0 p-0"
                   checked={p.active}
                   onChange={createUpdatePlayerActiveFunction(idx)}
                 />
                 <label htmlFor={`player-checkbox-items-${idx}`}>
-                  <div className="text-sm font-light">{p.name}</div>
+                  <div className="text-sm font-light m-0 p-0">{p.name}</div>
                   <PlayerIcon player={p} />
                 </label>
-                <input
-                  id={`colorpicker-items-${idx}`}
-                  type="color"
-                  className="hidden"
-                  value={p.color}
-                  onChange={(e) => {
-                    const updateColor = createUpdatePlayerColorFunction(idx);
-                    updateColor(e.target.value);
-                  }}
-                />
-                <label
-                  htmlFor={`colorpicker-items-${idx}`}
-                  className="inline-block justify-center w-2/5"
-                >
-                  <ColorPickerIcon />
-                </label>
+                <div className="flex items-center justify-center">
+                  <input
+                    id={`colorpicker-items-${idx}`}
+                    type="color"
+                    className="size-2"
+                    value={p.color}
+                    onChange={(e) => {
+                      const updateColor = createUpdatePlayerColorFunction(idx);
+                      updateColor(e.target.value);
+                    }}
+                  />
+                  <label htmlFor={`colorpicker-items-${idx}`} className="w-1/5">
+                    <ColorPickerIcon />
+                  </label>
+                </div>
               </div>
             </li>
           );
