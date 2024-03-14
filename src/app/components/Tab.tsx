@@ -31,7 +31,7 @@ export function Tab({ tabs, defaultOpenKey }: Props) {
           })}
         </div>
       </div>
-      <div className="p-5">
+      <div className="p-1">
         {tabs.find((e) => e.tabKey === tabKey)?.content}
       </div>
     </div>

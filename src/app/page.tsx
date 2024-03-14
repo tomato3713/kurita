@@ -16,10 +16,12 @@ type TabKind = (typeof TabKindList)[keyof typeof TabKindList];
 
 export default function Home() {
   const [players, setPlayers] = useState<Player[]>([
-    { name: "1", color: "#0000ff", active: true },
-    { name: "2", color: "#00ff00", active: false },
-    { name: "3", color: "#ff0000", active: false },
-    { name: "4", color: "#10500F", active: false },
+    { name: "Player 1", color: "#0000ff", active: true },
+    { name: "Player 2", color: "#00ff00", active: false },
+    { name: "Player 3", color: "#ff0000", active: false },
+    { name: "Player 4", color: "#10500F", active: false },
+    { name: "Player 5", color: "#2055FF", active: false },
+    { name: "Player 6", color: "#ffff00", active: false },
   ]);
 
   const defaultGameSetting: GameSetting = {

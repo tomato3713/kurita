@@ -1,6 +1,6 @@
 import { Player } from "@/lib/util";
 import { PlayerIcon } from "./PlayerIcon";
-import { ColorPicker } from "./ColorPicker";
+import { ColorPickerIcon } from "./ColorPickerIcon";
 
 type PlayerSettingTabProps = Readonly<{
   players: Player[];
@@ -25,27 +25,42 @@ export const PlayerSettingTab: React.FC<PlayerSettingTabProps> = ({
   };
 
   return (
-    <div className="player-setting-tab">
-      <ul>
+    <div>
+      <ul className="flex flex-wrap">
         {players.map((p, idx) => {
           return (
-            <li key={p.name}>
-              <div className="flex items-center mb-4">
+            <li key={p.name} className="w-1/5 ps-px pr-px">
+              <div
+                className={`items-center text-center mb-px px-1 ${p.active && "bg-gray-400"}`}
+              >
                 <input
                   id={"player-checkbox-items-" + idx.toString()}
                   type="checkbox"
                   value=""
-                  className="w-4 h-4"
+                  className="hidden"
                   checked={p.active}
                   onChange={createUpdatePlayerActiveFunction(idx)}
-                ></input>
+                />
                 <label htmlFor={"player-checkbox-items-" + idx.toString()}>
+                  <div className="text-sm font-light">{p.name}</div>
                   <PlayerIcon player={p} />
                 </label>
-                <ColorPicker
-                  color={p.color}
-                  setColor={createUpdatePlayerColorFunction(idx)}
+                <input
+                  id={`colorpicker-items-${p.name}`}
+                  type="color"
+                  className="hidden"
+                  value={p.color}
+                  onChange={(e) => {
+                    const updateColor = createUpdatePlayerColorFunction(idx);
+                    updateColor(e.target.value);
+                  }}
                 />
+                <label
+                  htmlFor={`colorpicker-items-${p.name}`}
+                  className="inline-block justify-center w-2/5"
+                >
+                  <ColorPickerIcon />
+                </label>
               </div>
             </li>
           );
