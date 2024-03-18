@@ -1,8 +1,9 @@
 import { GameSetting, Player } from "@/lib/util";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useTimer } from "react-timer-hook";
 import { Timer } from "./Timer";
 import { PlayerIcon } from "./PlayerIcon";
+import { New } from "@/lib/sound";
 
 type TimerTabProps = Readonly<{
   players: Player[];
@@ -10,6 +11,9 @@ type TimerTabProps = Readonly<{
 }>;
 export const TimerTab: React.FC<TimerTabProps> = ({ players, gameSetting }) => {
   const [activePlayer, setActivePlayer] = useState(players[0]);
+  const sound = useMemo(() => {
+    return New();
+  }, [New]);
 
   const handlePlayerClick = (player: Player) => {
     return () => {
@@ -22,7 +26,7 @@ export const TimerTab: React.FC<TimerTabProps> = ({ players, gameSetting }) => {
   const timestamp = new Date(now.getTime() + gameSetting.span * 1000);
 
   const handleExpired = () => {
-    console.log("expired");
+    sound.play();
   };
 
   const { seconds, minutes, isRunning, start, pause, resume, restart } =
