@@ -9,5 +9,6 @@ export type Player = {
 
 export type GameSetting = {
   span: number;
+  sound: string;
 };
 

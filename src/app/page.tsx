@@ -7,6 +7,7 @@ import { GameSettingTab } from "./components/GameSettingTab";
 import { PlayerSettingTab } from "./components/PlayerSettingTab";
 import { AppHeader } from "./components/AppHeader";
 import { TimerTab } from "./components/TimerTab";
+import { defaultSource } from "@/lib/sound";
 
 const TabKindList = {
   PlayerSetting: "playerSetting",
@@ -26,6 +27,7 @@ export default function Home() {
 
   const defaultGameSetting: GameSetting = {
     span: 5,
+    sound: defaultSource,
   };
   const [gameSetting, setGameSetting] =
     useState<GameSetting>(defaultGameSetting);

@@ -12,7 +12,7 @@ type TimerTabProps = Readonly<{
 export const TimerTab: React.FC<TimerTabProps> = ({ players, gameSetting }) => {
   const [activePlayer, setActivePlayer] = useState(players[0]);
   const sound = useMemo(() => {
-    return New();
+    return New(gameSetting.sound);
   }, [New]);
 
   const handlePlayerClick = (player: Player) => {
