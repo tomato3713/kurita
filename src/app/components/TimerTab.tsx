@@ -13,7 +13,7 @@ export const TimerTab: React.FC<TimerTabProps> = ({ players, gameSetting }) => {
   const [activePlayer, setActivePlayer] = useState(players[0]);
   const sound = useMemo(() => {
     return New(gameSetting.sound);
-  }, [New]);
+  }, [gameSetting.sound]);
 
   const handlePlayerClick = (player: Player) => {
     return () => {
