@@ -33,7 +33,7 @@ export const GameSettingTab: React.FC<GameSettingTabProps> = ({
             return (
               <div
                 key={`sound-type-${v}`}
-                className={`w-1/${source.size} px-0 mx-1 text-center ${gameSetting.sound === source.get(v) ? "bg-blue-700 text-gray-100 font-bold" : "bg-blue-200 text-gray-950"}`}
+                className={`grow px-0 mx-1 text-center ${gameSetting.sound === source.get(v) ? "bg-blue-700 text-gray-100 font-bold" : "bg-blue-200 text-gray-950"}`}
               >
                 <input
                   className="hidden"
